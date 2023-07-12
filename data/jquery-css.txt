@@ -1,0 +1,5 @@
+/media/jui/css/chosen.css
+/media/jui/css/sortablelist.css
+/media/jui/css/jquery.minicolors.css
+/media/jui/css/jquery.searchtools.css
+/media/jui/css/jquery.simplecolors.css

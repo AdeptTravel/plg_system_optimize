@@ -1,0 +1,4 @@
+/media/jui/js/bootstrap-tooltip-extended.js
+/media/jui/js/bootstrap-tooltip-extended.min.js
+/media/jui/js/bootstrap.js
+/media/jui/js/bootstrap.min.js

@@ -1,0 +1,7 @@
+/media/jui/css/bootstrap.min.css
+/media/jui/css/bootstrap-extended.css
+/media/jui/css/bootstrap-responsive.css
+/media/jui/css/bootstrap-responsive.min.css
+/media/jui/css/bootstrap-rtl.css
+/media/jui/css/bootstrap-tooltip-extended.css
+/media/jui/css/bootstrap.css

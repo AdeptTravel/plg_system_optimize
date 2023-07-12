@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.6" type="plugin" group="system" method="upgrade">
+  <name>PLG_SYSTEM_OPTIMIZE</name>
+  <author>Brandon J. Yaniz</author>
+  <creationDate>January 2022</creationDate>
+  <copyright>Copyright (C) 2022 The Adept Traveler, Inc. All rights reserved.</copyright>
+  <license>BSD 3 Clause; see LICENSE.txt</license>
+  <authorEmail>joomla@adept.travel</authorEmail>
+  <authorUrl>adept.travel</authorUrl>
+  <version>0.1.0</version>
+  <description>PLG_SYSTEM_OPTIMIZE_DESC</description>
+
+  <languages>
+    <language tag="en-GB">language/en-GB/plg_system_optimize.ini</language>
+    <language tag="en-GB">language/en-GB/plg_system_optimize.sys.ini</language>
+  </languages>
+
+  <!--
+	<media folder="media" destination="plg_system_optimize">
+		<folder>img</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
+-->
+
+  <files>
+    <folder>language</folder>
+    <folder>src</folder>
+    <filename plugin="optimize">optimize.php</filename>
+    <filename>index.html</filename>
+  </files>
+
+  <config>
+    <fields name="params">
+      <fieldset
+        name="fieldset_html"
+        label="PLG_SYSTEM_OPTIMIZE_FIELDSET_HTML">
+
+        <field
+          name="html_optimize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_OPTIMIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_OPTIMIZE_DESC">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="html_normalize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_NORMALIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_NORMALIZE_DESC"
+          showon="html_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="html_comments"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_COMMENTS_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_COMMENTS_DESC"
+          showon="html_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+
+        <field
+          name="html_minify"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_MINIFY_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_MINIFY_DESC"
+          showon="html_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+      </fieldset>
+
+      <fieldset
+        name="img"
+        label="PLG_SYSTEM_OPTIMIZE_FIELDSET_IMAGE">
+
+        <field
+          name="img_optimize"
+          type="radio"
+          class="btn-group"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_OPTIMIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_OPTIMIZE_DESC"
+          default="1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="img_lazyload"
+          type="radio"
+          class="btn-group"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_LAZYLOAD_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_LAZYLOAD_DESC"
+          default="1"
+          showon="img_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="img_dimensions"
+          type="radio"
+          class="btn-group"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_DIMENSIONS_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_DIMENSIONS_DESC"
+          default="1"
+          showon="img_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="img_webp"
+          type="radio"
+          class="btn-group"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_DESC"
+          default="1"
+          showon="img_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="img_webp_convert_gif"
+          type="radio"
+          class="btn-group"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_GIF_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_GIF_DESC"
+          default="1"
+          showon="img_optimize:1[AND]img_webp:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="img_webp_convert_png"
+          type="radio"
+          class="btn-group"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_PNG_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_PNG_DESC"
+          default="1"
+          showon="img_optimize:1[AND]img_webp:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="img_webp_convert_jpg"
+          type="radio"
+          class="btn-group"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_JPG_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_JPG_DESC"
+          default="1"
+          showon="img_optimize:1[AND]img_webp:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="img_webp_quality"
+          type="range"
+          default="80"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_CONVERT_QUALITY_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_IMG_WEBP_CONVERT_QUALITY_DESC"
+          min="0"
+          max="100"
+          step="1"
+          showon="img_optimize:1[AND]img_webp:1" />
+      </fieldset>
+
+      <fieldset
+        name="fieldset_css"
+        label="PLG_SYSTEM_OPTIMIZE_FIELDSET_CSS">
+
+        <field
+          name="css_ext_note"
+          type="note"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_NOTE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_NOTE_DESC" />
+
+        <field
+          name="css_ext_optimize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_OPTIMIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_OPTIMIZE_DESC">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="css_ext_normalize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_NORMALIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_NORMALIZE_DESC"
+          showon="css_ext_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="css_ext_comments"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_REMOVE_COMMENTS_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_REMOVE_COMMENTS_DESC"
+          showon="css_ext_optimize:1[AND]css_ext_minify:0">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="css_ext_relative"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_RELATIVE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_RELATIVE_DESC"
+          showon="css_ext_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="css_ext_minify"
+          type="list"
+          default="Sabberworm"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_MINIFY_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_EXT_MINIFY_DESC"
+          showon="css_ext_optimize:1">
+
+
+          <option value="0">JOFF</option>
+          <option value="Sabberworm">PLG_SYSTEM_OPTIMIZE_OPTION_SABBERWORM</option>
+          <option value="MatthiasMullie">PLG_SYSTEM_OPTIMIZE_OPTION_MATTHIASMULLIE</option>
+        </field>
+
+        <field
+          name="css_int_note"
+          type="note"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_NOTE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_NOTE_DESC" />
+
+        <field
+          name="css_int_optimize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_OPTIMIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_OPTIMIZE_DESC">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+        <field
+          name="css_int_normalize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_NORMALIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_NORMALIZE_DESC"
+          showon="css_int_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="css_int_comments"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_REMOVE_COMMENTS_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_REMOVE_COMMENTS_DESC"
+          showon="css_int_optimize:1[AND]css_int_minify:0">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="css_int_minify"
+          type="list"
+          class="btn-group"
+          default="Sabberworm"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_MINIFY_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_CSS_INT_MINIFY_DESC"
+          showon="css_int_optimize:1">
+
+
+          <option value="0">JOFF</option>
+          <option value="Sabberworm">PLG_SYSTEM_OPTIMIZE_OPTION_SABBERWORM</option>
+          <option value="MatthiasMullie">PLG_SYSTEM_OPTIMIZE_OPTION_MATTHIASMULLIE</option>
+        </field>
+      </fieldset>
+
+      <fieldset
+        name="fieldset_js"
+        label="PLG_SYSTEM_OPTIMIZE_FIELDSET_JS">
+
+        <field
+          name="js_ext_note"
+          type="note"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_NOTE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_NOTE_DESC" />
+
+        <field
+          name="js_ext_optimize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_OPTIMIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_OPTIMIZE_DESC">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="js_ext_normalize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_NORMALIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_NORMALIZE_DESC"
+          showon="js_ext_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="js_ext_comments"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_REMOVE_COMMENTS_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_REMOVE_COMMENTS_DESC"
+          showon="js_ext_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="js_ext_minify"
+          type="list"
+          default="MatthiasMullie"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_MINIFY_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_EXT_MINIFY_DESC"
+          showon="js_ext_optimize:1">
+
+          <option value="0">JOFF</option>
+          <option value="MatthiasMullie">PLG_SYSTEM_OPTIMIZE_OPTION_MATTHIASMULLIE</option>
+          <option value="JShrink">PLG_SYSTEM_OPTIMIZE_OPTION_JSHRINK</option>
+          <option value="RegEx">PLG_SYSTEM_OPTIMIZE_OPTION_REGEX</option>
+        </field>
+
+        <field
+          name="js_int_note"
+          type="note"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_NOTE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_NOTE_DESC" />
+
+        <field
+          name="js_int_optimize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_OPTIMIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_OPTIMIZE_DESC">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="js_int_normalize"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_NORMALIZE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_NORMALIZE_DESC"
+          showon="js_int_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="js_int_comments"
+          type="radio"
+          class="btn-group"
+          default="1"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_REMOVE_COMMENTS_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_REMOVE_COMMENTS_DESC"
+          showon="js_int_optimize:1">
+
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="js_int_minify"
+          type="list"
+          default="MatthiasMullie"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_MINIFY_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_JS_INT_MINIFY_DESC"
+          showon="js_int_optimize:1">
+
+          <option value="0">JOFF</option>
+          <option value="MatthiasMullie">PLG_SYSTEM_OPTIMIZE_OPTION_MATTHIASMULLIE</option>
+          <option value="JShrink">PLG_SYSTEM_OPTIMIZE_OPTION_JSHRINK</option>
+          <option value="RegEx">PLG_SYSTEM_OPTIMIZE_OPTION_REGEX</option>
+        </field>
+      </fieldset>
+
+      <fieldset
+        name="jquery"
+        label="PLG_SYSTEM_OPTIMIZE_FIELDSET_JQUERY">
+
+        <field
+          name="jquery_remove"
+          type="radio"
+          class="btn-group"
+          default="0"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_JQUERY_REMOVE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_JQUERY_REMOVE_DESC">
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+
+        <field
+          name="jquery_cdn"
+          type="list"
+          default="local"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_JQUERY_CDN_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_JQUERY_CDN_DESC"
+          showon="jquery_remove:0">
+
+          <option value="local">PLG_SYSTEM_OPTIMIZE_OPTIONS_NONE</option>
+          <option value="google">PLG_SYSTEM_OPTIMIZE_OPTIONS_GOOGLE</option>
+          <option value="jquery">PLG_SYSTEM_OPTIMIZE_OPTIONS_JQUERY</option>
+        </field>
+
+        <field
+          name="jquery_cdn_version"
+          type="list"
+          default="1.12.4"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_JQUERY_CDN_VER_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_JQUERY_CDN_VER_DESC"
+          showon="jquery_remove:0[AND]jquery_cdn!:local">
+
+          <option value="3.4.1">3.4.1</option>
+          <option value="3.4.0" showon="jquery_cdn:google">3.4.0</option>
+          <option value="3.3.1" showon="jquery_cdn:google">3.3.1</option>
+          <option value="3.2.1" showon="jquery_cdn:google">3.2.1</option>
+          <option value="3.2.0" showon="jquery_cdn:google">3.2.0</option>
+          <option value="3.1.1" showon="jquery_cdn:google">3.1.1</option>
+          <option value="3.1.0" showon="jquery_cdn:google">3.1.0</option>
+          <option value="3.0.0" showon="jquery_cdn:google">3.0.0</option>
+          <option value="2.2.4">2.2.4</option>
+          <option value="2.2.3" showon="jquery_cdn:google">2.2.3</option>
+          <option value="2.2.2" showon="jquery_cdn:google">2.2.2</option>
+          <option value="2.2.1" showon="jquery_cdn:google">2.2.1</option>
+          <option value="2.2.0" showon="jquery_cdn:google">2.2.0</option>
+          <option value="2.1.4" showon="jquery_cdn:google">2.1.4</option>
+          <option value="2.1.3" showon="jquery_cdn:google">2.1.3</option>
+          <option value="2.1.1" showon="jquery_cdn:google">2.1.1</option>
+          <option value="2.1.0" showon="jquery_cdn:google">2.1.0</option>
+          <option value="2.0.3" showon="jquery_cdn:google">2.0.3</option>
+          <option value="2.0.2" showon="jquery_cdn:google">2.0.2</option>
+          <option value="2.0.1" showon="jquery_cdn:google">2.0.1</option>
+          <option value="2.0.0" showon="jquery_cdn:google">2.0.0</option>
+          <option value="1.12.4">1.12.4</option>
+          <option value="1.12.3" showon="jquery_cdn:google">1.12.3</option>
+          <option value="1.12.2" showon="jquery_cdn:google">1.12.2</option>
+          <option value="1.12.1" showon="jquery_cdn:google">1.12.1</option>
+          <option value="1.12.0" showon="jquery_cdn:google">1.12.0</option>
+          <option value="1.11.3" showon="jquery_cdn:google">1.11.3</option>
+          <option value="1.11.2" showon="jquery_cdn:google">1.11.2</option>
+          <option value="1.11.1" showon="jquery_cdn:google">1.11.1</option>
+          <option value="1.11.0" showon="jquery_cdn:google">1.11.0</option>
+          <option value="1.10.2" showon="jquery_cdn:google">1.10.2</option>
+          <option value="1.10.1" showon="jquery_cdn:google">1.10.1</option>
+          <option value="1.10.0" showon="jquery_cdn:google">1.10.0</option>
+          <option value="1.9.1" showon="jquery_cdn:google">1.9.1</option>
+          <option value="1.9.0" showon="jquery_cdn:google">1.9.0</option>
+          <option value="1.8.3" showon="jquery_cdn:google">1.8.3</option>
+          <option value="1.8.2" showon="jquery_cdn:google">1.8.2</option>
+          <option value="1.8.1" showon="jquery_cdn:google">1.8.1</option>
+          <option value="1.8.0" showon="jquery_cdn:google">1.8.0</option>
+          <option value="1.7.2" showon="jquery_cdn:google">1.7.2</option>
+          <option value="1.7.1" showon="jquery_cdn:google">1.7.1</option>
+          <option value="1.7.0" showon="jquery_cdn:google">1.7.0</option>
+          <option value="1.6.4" showon="jquery_cdn:google">1.6.4</option>
+          <option value="1.6.3" showon="jquery_cdn:google">1.6.3</option>
+          <option value="1.6.2" showon="jquery_cdn:google">1.6.2</option>
+          <option value="1.6.1" showon="jquery_cdn:google">1.6.1</option>
+          <option value="1.6.0" showon="jquery_cdn:google">1.6.0</option>
+          <option value="1.5.2" showon="jquery_cdn:google">1.5.2</option>
+          <option value="1.5.1" showon="jquery_cdn:google">1.5.1</option>
+          <option value="1.5.0" showon="jquery_cdn:google">1.5.0</option>
+          <option value="1.4.4" showon="jquery_cdn:google">1.4.4</option>
+          <option value="1.4.3" showon="jquery_cdn:google">1.4.3</option>
+          <option value="1.4.2" showon="jquery_cdn:google">1.4.2</option>
+          <option value="1.4.1" showon="jquery_cdn:google">1.4.1</option>
+          <option value="1.4.0" showon="jquery_cdn:google">1.4.0</option>
+          <option value="1.3.2" showon="jquery_cdn:google">1.3.2</option>
+          <option value="1.3.1" showon="jquery_cdn:google">1.3.1</option>
+          <option value="1.3.0" showon="jquery_cdn:google">1.3.0</option>
+          <option value="1.2.6" showon="jquery_cdn:google">1.2.6</option>
+          <option value="1.2.3" showon="jquery_cdn:google">1.2.3</option>
+        </field>
+      </fieldset>
+
+      <fieldset
+        name="bootstrap"
+        label="PLG_SYSTEM_OPTIMIZE_FIELDSET_BOOTSTRAP">
+        <field
+          name="bootstrap_remove"
+          type="radio"
+          class="btn-group"
+          default="0"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_BOOTSTRAP_REMOVE_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_BOOTSTRAP_REMOVE_DESC">
+          <option value="1">JON</option>
+          <option value="0">JOFF</option>
+        </field>
+        <field
+          name="bootstrap_cdn"
+          type="list"
+          default="local"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_BOOTSTRAP_CDN_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_BOOTSTRAP_CDN_DESC"
+          showon="bootstrap_remove:0">
+
+          <option value="local">PLG_SYSTEM_OPTIMIZE_OPTIONS_NONE</option>
+          <option value="bootstrapcdn">PLG_SYSTEM_OPTIMIZE_OPTIONS_BOOTSTRAPCDN</option>
+        </field>
+
+        <field
+          name="bootstrap_cdn_version"
+          type="list"
+          default="1.12.4"
+          label="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_BOOTSTRAP_CDN_VER_LABEL"
+          description="PLG_SYSTEM_OPTIMIZE_FIELD_HTML_BOOTSTRAP_CDN_VER_DESC"
+          showon="bootstrap_remove:0[AND]bootstrap_cdn!:local">
+
+          <option value="1.2.3" showon="jquery_cdn:google">1.2.3</option>
+        </field>
+
+      </fieldset>
+    </fields>
+  </config>
+</extension>
